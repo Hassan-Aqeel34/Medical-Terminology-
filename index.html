@@ -1,42 +1,81 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاضرات الصيدلة - المرحلة الأولى</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { color: #0077b6; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
-        .lecture-info { background: #e9f5ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        .content { line-height: 1.8; font-size: 1.1em; }
-        .footer { text-align: center; margin-top: 30px; color: #777; font-size: 0.9em; }
-    </style>
-</head>
-<body>
+<!-- Filter Tabs -->
+<div class="filter-tabs">
+    <button class="tab-btn active" onclick="setFilter('all', this)">All Sections (<span id="count-all">0</span>)</button>
+    <button class="tab-btn" onclick="setFilter('bookmarked', this)">🔖 Bookmarked (<span id="count-bookmarked">0</span>)</button>
+    <button class="tab-btn" onclick="setFilter('unreviewed', this)">Unreviewed (<span id="count-unreviewed">0</span>)</button>
+</div>
 
-    <div class="container">
-        <h1>عنوان المحاضرة: (مثلاً: علم الأدوية - المحاضرة الأولى)</h1>
-        
-        <div class="lecture-info">
-            <p><strong>الدكتور المحاضر:</strong> اسم الدكتور</p>
-            <p><strong>المادة:</strong> صيدلة المرحلة الأولى - جامعة البصرة</p>
+<!-- Global Arabic Controls -->
+<div class="arabic-controls">
+    <button class="ctrl-btn" onclick="toggleAllArabic(true)">⌄ Expand All Arabic</button>
+    <button class="ctrl-btn" onclick="toggleAllArabic(false)">^ Collapse All Arabic</button>
+</div>
+
+<!-- Hero Banner -->
+<div class="hero-card">
+    <div class="hero-badges">
+        <span class="badge">Human Anatomy Module</span>
+        <span class="badge" id="hero-topics-badge">2 Topics & Diagrams</span>
+    </div>
+    <h2>Bones of the Human Body</h2>
+    <div class="hero-meta">Lecturer: Dr. Name • <span>College of Pharmacy</span></div>
+    <button class="hero-translate-btn" onclick="toggleAllArabic()">文A Show / Hide All Arabic Translation</button>
+</div>
+
+<!-- Sections Container -->
+<div id="sectionsContainer">
+
+    <!-- SECTION 1 -->
+    <div class="section-card" data-bookmarked="false" data-reviewed="false">
+        <div class="section-header">
+            <div class="section-num">1</div>
+            <div class="section-title-area">
+                <span>SKELETAL SYSTEM OVERVIEW</span>
+                <h3>Classification of Bones</h3>
+            </div>
         </div>
 
-        <div class="content">
-            <h3>مقدمة وملخص المحاضرة:</h3>
-            <p>هنا تگدر تخلي ملخص المحاضرة، النقاط المهمة، أو الأسئلة المرشحة اللي تريد تشاركها ويا أصدقائك.</p>
-            <ul>
-                <li>النقطة أو التعريف الأول المهم.</li>
-                <li>النقطة أو الآلية الثانية.</li>
-                <li>ملاحظات للداموس أو الامتحان.</li>
-            </ul>
+        <div class="card-actions">
+            <button class="action-btn bookmark-btn" onclick="toggleBookmark(this)">🔖 Bookmark</button>
+            <button class="action-btn review-btn" onclick="toggleReview(this)">✓ Mark as Reviewed</button>
         </div>
 
-        <div class="footer">
-            تم إنشاؤه لمشاركة المحاضرات الزميلة 📚 | صيدلية البصرة
+        <div class="item-list">
+            <div class="content-item">
+                <div class="item-en">Long bones</div>
+                <div class="item-desc">Greater in length than width, consist of a shaft and two extremities (e.g., femur, humerus).</div>
+                <button class="toggle-ar-btn" onclick="toggleSingleArabic(this)">عرض الترجمة العربية ⌄</button>
+                <div class="item-ar"><strong>العظام الطويلة:</strong> يكون طولها أكبر من عرضها، وتتكون من جسم العظم (العمود) ونهايتين (مثل عظم الفخذ وعظم العضد).</div>
+            </div>
+
+            <div class="content-item">
+                <div class="item-en">Short bones</div>
+                <div class="item-desc">Cube-shaped bones, nearly equal in length and width (e.g., carpal and tarsal bones).</div>
+                <button class="toggle-ar-btn" onclick="toggleSingleArabic(this)">عرض الترجمة العربية ⌄</button>
+                <div class="item-ar"><strong>العظام القصيرة:</strong> عظام مكعبة الشكل، يتساوى طولها وعرضها تقريباً (مثل عظام رسغ اليد ورسغ القدم).</div>
+            </div>
+
+            <div class="content-item">
+                <div class="item-en">Flat bones</div>
+                <div class="item-desc">Thin and composed of two nearly parallel plates of compact bone tissue (e.g., cranial bones, sternum).</div>
+                <button class="toggle-ar-btn" onclick="toggleSingleArabic(this)">عرض الترجمة العربية ⌄</button>
+                <div class="item-ar"><strong>العظام المسطحة:</strong> رقيقة وتتكون من صفيحتين متوازيتين تقريباً من النسيج العظمي الكثيف، وتعمل على الحماية (مثل عظام الجمجمة وعظمة القص).</div>
+            </div>
+        </div>
+
+        <div class="diagram-box">
+            🖼️ <strong>Diagram Placeholder:</strong> Types of Bones (Long, Short, Flat, Irregular)
         </div>
     </div>
 
-</body>
-</html>
+    <!-- SECTION 2 -->
+    <div class="section-card" data-bookmarked="false" data-reviewed="false">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <div class="section-title-area">
+                <span>ANATOMICAL DIVISIONS</span>
+                <h3>Divisions of the Skeletal System</h3>
+            </div>
+        </div>
+
+        <div class="card-actions">
